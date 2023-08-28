@@ -21,3 +21,14 @@ unique(lobster_traps$SITE)
 head(lobster_traps)
 ```
 
+
+```{r}
+
+lobster_traps<- lobster_traps %>% 
+  mutate(TRAPS = na_if(TRAPS,-99999))
+
+unique(lobster_traps$TRAPS)
+
+
+```
+
