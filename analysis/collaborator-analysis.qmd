@@ -32,3 +32,33 @@ unique(lobster_traps$TRAPS)
 
 ```
 
+## Exercise: Data Visualization
+
+```{r}
+
+ggplot(data = lobster_traps, aes( x = TRAPS)) +
+  geom_histogram() + 
+  facet_wrap( ~YEAR)
+
+```
+
+```{r}
+
+lobsters_traps_summarize <- lobster_traps %>% 
+  group_by(SITE, YEAR) %>% 
+  summarise(TOTAL_TRAPS = sum(TRAPS, na.rm = TRUE))
+
+ggplot(data = lobsters_traps_summarize, aes(x = YEAR, y = TOTAL_TRAPS, color = SITE)) +
+  geom_line(size = 0.7, alpha = 0.8) +
+  geom_point(size = 1.7, alpha = 0.6) +
+  theme_bw() +
+  labs(x = "Year", 
+       y = "Total number of traps",
+       color = "Site",
+       title = "Number of lobster traps colored by site seen each year") +
+  theme(legend.position = "bottom") +
+  scale_color_viridis_d()
+  
+
+```
+
