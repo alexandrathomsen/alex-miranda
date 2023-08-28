@@ -15,5 +15,9 @@ library(tidyr)
 library(here)
 
 lobster_traps <- read_csv("../data/Lobster_Trap_Counts_All_Years_20210519.csv")
+
+glimpse(lobster_traps)
+unique(lobster_traps$SITE)
+head(lobster_traps)
 ```
 
