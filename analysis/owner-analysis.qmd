@@ -19,5 +19,19 @@ lobster_abundance <- read_csv("../data/Lobster_Abundance_All_Years_20220829.csv"
 glimpse(lobster_abundance)
 unique(lobster_abundance$SITE)
 head(lobster_abundance)
+range(lobster_abundance$SIZE_MM)
+```
+
+```{r}
+lobster_abundance <- lobster_abundance %>% 
+  mutate(SIZE_MM = na_if(SIZE_MM,-99999))
+
+unique(lobster_abundance$SIZE_MM)
+```
+
+
+## Exercise: Data Visualization
+```{r}
+
 ```
 
