@@ -13,7 +13,7 @@ library(dplyr)
 library(ggplot2)
 library(tidyr)
 library(here)
-
+library(DT)
 lobster_traps <- read_csv("../data/Lobster_Trap_Counts_All_Years_20210519.csv")
 
 glimpse(lobster_traps)
@@ -59,6 +59,22 @@ ggplot(data = lobsters_traps_summarize, aes(x = YEAR, y = TOTAL_TRAPS, color = S
   theme(legend.position = "bottom") +
   scale_color_viridis_d()
   
+ggsave("../figs/lobster_traps_by_year.jpg", width = 12, height = 6, units = "in")
 
 ```
+
+## Making a table
+
+```{r}
+
+locations <- lobster_traps %>%
+    distinct(SITE, .keep_all = T) %>%
+    select(SITE, SEGMENT_START, SEGMENT_END)
+
+head(locations)
+
+datatable(locations)
+
+```
+
 
