@@ -32,6 +32,34 @@ unique(lobster_abundance$SIZE_MM)
 
 ## Exercise: Data Visualization
 ```{r}
+ggplot(lobster_abundance,
+       aes(x = SIZE_MM))+
+  geom_histogram()+
+  facet_wrap(~SITE)
+```
 
+```{r}
+lobsters_summarize <- lobster_abundance %>% 
+  group_by(SITE, YEAR) %>% 
+  summarise(COUNT = n())
+```
+
+```{r}
+lobster_abundance_plot <- ggplot(lobsters_summarize, 
+       aes(x = YEAR, y = COUNT)) +
+  geom_line(aes(color = SITE))+
+  geom_point()+
+  labs(x = "Year",
+       y = "Total Lobsters",
+       color = "Site",
+       title = "Total Lobsters by Year")+
+  scale_x_continuous(breaks=seq(2012,2022,2))+
+  theme_bw()+
+  scale_color_viridis_d()
+```
+
+```{r}
+ggsave("../figs/lobster_counts_by_year.jpg", width = 6, height = 4,
+       units = "in")
 ```
 
